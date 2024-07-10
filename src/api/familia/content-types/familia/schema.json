@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "familias",
+  "info": {
+    "singularName": "familia",
+    "pluralName": "familias",
+    "displayName": "Familia",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "idade": {
+      "type": "integer"
+    },
+    "birthdate": {
+      "type": "date"
+    }
+  }
+}
