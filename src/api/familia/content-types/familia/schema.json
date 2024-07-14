@@ -15,9 +15,6 @@
     "nome": {
       "type": "string"
     },
-    "idade": {
-      "type": "integer"
-    },
     "birthdate": {
       "type": "date"
     }
