@@ -793,7 +793,7 @@ export interface ApiFamiliaFamilia extends Schema.CollectionType {
   info: {
     singularName: 'familia';
     pluralName: 'familias';
-    displayName: 'Familia';
+    displayName: 'aniversariantes';
     description: '';
   };
   options: {
@@ -825,7 +825,8 @@ export interface ApiGaleriaGaleria extends Schema.CollectionType {
   info: {
     singularName: 'galeria';
     pluralName: 'galerias';
-    displayName: 'galeria';
+    displayName: 'carrosel';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -833,7 +834,6 @@ export interface ApiGaleriaGaleria extends Schema.CollectionType {
   attributes: {
     banner: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     titulo: Attribute.String;
-    subtitulo: Attribute.String;
     link: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -859,6 +859,7 @@ export interface ApiNoticiaNoticia extends Schema.CollectionType {
     singularName: 'noticia';
     pluralName: 'noticias';
     displayName: 'noticia';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -868,6 +869,7 @@ export interface ApiNoticiaNoticia extends Schema.CollectionType {
     subtitulo: Attribute.String;
     cover: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     content: Attribute.RichText;
+    fotos: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -879,6 +881,38 @@ export interface ApiNoticiaNoticia extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::noticia.noticia',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPopupPopup extends Schema.SingleType {
+  collectionName: 'popups';
+  info: {
+    singularName: 'popup';
+    pluralName: 'popups';
+    displayName: 'popup';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    popup: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    link: Attribute.String & Attribute.DefaultTo<'https://www.eb.mil.br'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::popup.popup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::popup.popup',
       'oneToOne',
       'admin::user'
     > &
@@ -907,6 +941,7 @@ declare module '@strapi/types' {
       'api::familia.familia': ApiFamiliaFamilia;
       'api::galeria.galeria': ApiGaleriaGaleria;
       'api::noticia.noticia': ApiNoticiaNoticia;
+      'api::popup.popup': ApiPopupPopup;
     }
   }
 }
